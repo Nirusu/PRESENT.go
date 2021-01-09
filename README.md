@@ -1,9 +1,7 @@
 # PRESENT.go
-[![GoDoc](https://godoc.org/github.com/yi-jiayu/PRESENT.go?status.svg)](https://godoc.org/github.com/yi-jiayu/PRESENT.go)
-[![Build Status](https://travis-ci.com/yi-jiayu/PRESENT.go.svg?branch=master)](https://travis-ci.com/yi-jiayu/PRESENT.go)
-[![codecov](https://codecov.io/gh/yi-jiayu/PRESENT.go/branch/master/graph/badge.svg)](https://codecov.io/gh/yi-jiayu/PRESENT.go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/yi-jiayu/PRESENT.go)](https://goreportcard.com/report/github.com/yi-jiayu/PRESENT.go)
+## **This is a fork based which allows to set an adjustable number of rounds for research purposes. This is obviously INSECURE when used without the default number of rounds, which is 31. You properly may not want to use this, but rather [the original](github.com/yi-jiayu/PRESENT.go) if you do not need a "broken" cipher for research.**
 
+## About
 Go implementation of the PRESENT ultra-lightweight block cipher as defined by Bogdanov et al. [1].
 
 Not to be confused with the Go presentation tool [package](https://godoc.org/golang.org/x/tools/present) and [command](https://godoc.org/golang.org/x/tools/cmd/present).
@@ -21,7 +19,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/yi-jiayu/PRESENT.go"
+	"github.com/Nirusu/PRESENT.go"
 )
 
 func encodeHex(data []byte) string {
@@ -33,7 +31,7 @@ func encodeHex(data []byte) string {
 func main() {
 	key := make([]byte, 10)
 	fmt.Printf("%-10s : %s\n", "Key", encodeHex(key))
-	cipher, err := present.NewCipher(key)
+	cipher, err := present.NewCipher(key, 31) // Adjust 31 to choose how many rounds you want to use
 	if err != nil {
 		log.Fatal(err)
 	}
