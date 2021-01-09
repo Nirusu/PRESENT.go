@@ -21,8 +21,9 @@ func (k KeySizeError) Error() string {
 // The argument should be the PRESENT key,
 // which is either 10 or 16 bytes long
 // for key lengths of 80 bits and 128 bits respectively.
-func NewCipher(key []byte) (b cipher.Block, err error) {
+func NewCipher(key []byte, rounds int) (b cipher.Block, err error) {
 	k := len(key)
+	numRounds = rounds
 	switch k {
 	default:
 		err = KeySizeError(k)

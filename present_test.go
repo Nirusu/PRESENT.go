@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
+	present "github.com/Nirusu/PRESENT.go"
 	"github.com/stretchr/testify/assert"
-	"github.com/yi-jiayu/PRESENT.go"
 )
 
 var cases = []struct {
@@ -76,7 +76,7 @@ func decodeHex(s string) []byte {
 func TestNewCipher(t *testing.T) {
 	t.Run("invalid key size", func(t *testing.T) {
 		var key []byte
-		_, err := present.NewCipher(key)
+		_, err := present.NewCipher(key, 31)
 		if err == nil {
 			t.Fail()
 		}
@@ -89,7 +89,7 @@ func TestBlock_Encrypt(t *testing.T) {
 	for _, c := range cases {
 		t.Run(fmt.Sprintf("%d-bit key", len(c.Key)*4), func(t *testing.T) {
 			key := decodeHex(c.Key)
-			cipher, err := present.NewCipher(key)
+			cipher, err := present.NewCipher(key, 31)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -108,7 +108,7 @@ func TestBlock_Decrypt(t *testing.T) {
 	for _, c := range cases {
 		t.Run(fmt.Sprintf("%d-bit key", len(c.Key)*4), func(t *testing.T) {
 			key := decodeHex(c.Key)
-			cipher, err := present.NewCipher(key)
+			cipher, err := present.NewCipher(key, 31)
 			if err != nil {
 				t.Fatal(err)
 			}

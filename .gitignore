@@ -74,3 +74,7 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+# IDEA & VS Code
+.idea/
+.vscode/

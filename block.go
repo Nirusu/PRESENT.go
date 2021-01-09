@@ -7,7 +7,7 @@ import (
 // BlockSize is the PRESENT block size in bytes.
 const BlockSize = 8
 
-const numRounds = 31
+var numRounds = 31
 
 // Substitution and permutation tables for PRESENT.
 var (
